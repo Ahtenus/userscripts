@@ -6,8 +6,8 @@
 // @author       You
 // @match        https://news.ycombinator.com/item*
 // @grant        none
-// @updateURL   https://raw.githubusercontent.com/Ahtenus/userscripts/master/hackernews.user.js
-// @downloadURL https://raw.githubusercontent.com/Ahtenus/userscripts/master/hackernews.user.js
+// @updateURL    https://raw.githubusercontent.com/Ahtenus/userscripts/master/hackernews.user.js
+// @downloadURL  https://raw.githubusercontent.com/Ahtenus/userscripts/master/hackernews.user.js
 // ==/UserScript==
 
 (function() {
