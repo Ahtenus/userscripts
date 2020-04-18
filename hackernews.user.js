@@ -11,6 +11,7 @@
 // ==/UserScript==
 
 (function() {
+    'use strict';
     function addGlobalStyle(css) {
         var head, style;
         head = document.getElementsByTagName('head')[0];
@@ -20,6 +21,5 @@
         style.innerHTML = css.replace(/;/g, ' !important;');
         head.appendChild(style);
     }
-    'use strict';
-    addGlobalStyle(".togg { font-size: 2em; }");
+    addGlobalStyle(".togg { font-size: 2em; width: 100px; display: inline-block; }");
 })();
