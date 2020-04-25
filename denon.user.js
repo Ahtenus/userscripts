@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Denon Remote Improvements
 // @namespace    https://github.com/Ahtenus/userscripts
-// @version      1.20200425.172053
+// @version      1.20200425.172314
 // @description  Improvements to Denon AVR-X1300W Web-GUI
 // @author       Ahtenus
 // @match        http://10.0.0.100/MainZone/index.html
@@ -29,7 +29,6 @@ const userscript = {
         checkPredicate()
     })
 }
-
 
 userscript.globalStyle(`
 #Volume, #Surround, #QuickSelect, #S3 {
@@ -121,4 +120,4 @@ userscript.whenTrue(() => typeof loadMainXml !== 'undefined')
     }
 
 });
-});
+})();
