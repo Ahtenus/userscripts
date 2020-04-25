@@ -6,6 +6,7 @@
 // @author       Ahtenus
 // @match        http://10.0.0.100/MainZone/index.html
 // @grant        none
+// @run-at      document-idle
 // ==/UserScript==
 
 (() => {
