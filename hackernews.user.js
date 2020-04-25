@@ -1,22 +1,19 @@
 // ==UserScript==
 // @name         Hacker News
 // @namespace    https://github.com/Ahtenus/userscripts
-// @version      1.20200425.144732
+// @version      1.20200425.170936
 // @description  Bigger collapse button 
 // @author       Ahtenus
 // @match        https://news.ycombinator.com/item*
+// @require      https://github.com/Ahtenus/userscripts/raw/master/userscriptlib.js
 // ==/UserScript==
 
-(function() {
-    'use strict';
-    function addGlobalStyle(css) {
-        var head, style;
-        head = document.getElementsByTagName('head')[0];
-        if (!head) { return; }
-        style = document.createElement('style');
-        style.type = 'text/css';
-        style.innerHTML = css.replace(/;/g, ' !important;');
-        head.appendChild(style);
-    }
-    addGlobalStyle(".togg { font-size: 2em; width: 100px; display: inline-block; }");
-})();
+userscript.globalStyle(
+`
+.togg {
+    font-size: 2em;
+    width: 100px;
+    display: inline-block;
+}
+
+`);

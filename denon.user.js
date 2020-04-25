@@ -1,38 +1,14 @@
 // ==UserScript==
 // @name         Denon Remote Improvements
 // @namespace    https://github.com/Ahtenus/userscripts
-// @version      1.20200425.144635
+// @version      1.20200425.170936
 // @description  Improvements to Denon AVR-X1300W Web-GUI
 // @author       Ahtenus
 // @match        http://10.0.0.100/MainZone/index.html
+// @require      https://github.com/Ahtenus/userscripts/raw/master/userscriptlib.js
 // ==/UserScript==
 
-(() => {
-    'use strict';
-    const addGlobalStyle = (css) => {
-        const style = document.createElement('style');
-        style.type = 'text/css';
-        style.innerHTML = css.replace(/;/g, ' !important;');
-
-        const head = document.getElementsByTagName('head')[0];
-        if (head) { 
-            head.appendChild(style);
-        }
-    }
-
-    const whenTrue = (predicate) => new Promise((resolve, reject) => {
-        const checkPredicate = () => {
-            if(predicate()) {
-                resolve()
-            } else {
-                setTimeout(checkPredicate, 10);
-            }
-        }
-        checkPredicate()
-    })
-
-    addGlobalStyle(
-`
+userscript.globalStyle(`
 #Volume, #Surround, #QuickSelect, #S3 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -82,13 +58,12 @@ input[type=range] {
 `);
 
 // Volume slider
-whenTrue(() => typeof loadMainXml !== 'undefined')
+userscript.whenTrue(() => typeof loadMainXml !== 'undefined')
 .then(() => {
     const volumeSlider = `
-<div id="VolumeSlider">
-<input type="range" id="VolumeSliderInp" style="width: 100%; height: 35px;" name="Volume" min="0" step="0.5" max="80" >
-</div>
-`
+    <div id="VolumeSlider">
+        <input type="range" id="VolumeSliderInp" style="width: 100%; height: 35px;" name="Volume" min="0" step="0.5" max="80" >
+    </div>`
 
     $(volumeSlider).insertAfter("#Volume")
 
@@ -123,4 +98,3 @@ whenTrue(() => typeof loadMainXml !== 'undefined')
     }
 
 });
-})();
