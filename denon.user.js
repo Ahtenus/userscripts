@@ -11,12 +11,14 @@
 (() => {
     'use strict';
     const addGlobalStyle = (css) => {
-        const head = document.getElementsByTagName('head')[0];
-        if (!head) { return; }
         const style = document.createElement('style');
         style.type = 'text/css';
         style.innerHTML = css.replace(/;/g, ' !important;');
-        head.appendChild(style);
+
+        const head = document.getElementsByTagName('head')[0];
+        if (head) { 
+            head.appendChild(style);
+        }
     }
 
     const whenTrue = (predicate) => new Promise((resolve, reject) => {
@@ -68,6 +70,11 @@ div.btnHome, div.RParamSource, div.btnPlayerView {
 div {
     user-select: none;
     -moz-user-select: none;
+}
+
+input[type=range] {
+    width: 100%; /* Specific width is required for Firefox. */
+    background: transparent; /* Otherwise white in Chrome */
 }
 `);
 
