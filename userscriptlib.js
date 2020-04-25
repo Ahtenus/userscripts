@@ -1,4 +1,4 @@
-const userscipt = {
+const userscript = {
     globalStyle: (css) => {
         var head, style;
         head = document.getElementsByTagName('head')[0];
