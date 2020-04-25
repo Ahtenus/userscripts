@@ -52,5 +52,9 @@ div.btnHome, div.RParamSource, div.btnPlayerView {
     width: unset;
     float: unset;
 }
+
+* {
+    user-select: none;
+}
 `);
 })();
