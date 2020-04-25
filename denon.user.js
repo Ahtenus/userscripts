@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Denon
 // @namespace    https://barsk.dev/
-// @version      0.7
+// @version      0.9
 // @description  Improvements to Denon AVR-X1300W web GUI
 // @author       Ahtenus
 // @match        http://10.0.0.100/MainZone/index.html
@@ -18,6 +18,18 @@
         style.innerHTML = css.replace(/;/g, ' !important;');
         head.appendChild(style);
     }
+
+    const whenTrue = (predicate) => new Promise((resolve, reject) => {
+        const checkPredicate = () => {
+            if(predicate()) {
+                resolve()
+            } else {
+                setTimeout(checkPredicate, 10);
+            }
+        }
+        checkPredicate()
+    })
+
     addGlobalStyle(
 `
 #Volume, #Surround, #QuickSelect, #S3 {
@@ -61,14 +73,15 @@ div {
 
 
 // Volume slider
-setTimeout(() => {
+whenTrue(() => typeof loadMainXml !== 'undefined')
+.then(() => {
     const volumeSlider = `
 <div id="VolumeSlider">
-<input type="range" id="VolumeSliderInp" style="width: 100%" name="Volume" min="0" step="0.5" max="80" >
+<input type="range" id="VolumeSliderInp" style="width: 100%; height: 35px;" name="Volume" min="0" step="0.5" max="80" >
 </div>
 `
 
-    $(volumeSlider).insertAfter("#VolumeLabel")
+    $(volumeSlider).insertAfter("#Volume")
 
     const sliderVolume = () => parseFloat($("#VolumeSliderInp").val());
 
@@ -91,11 +104,10 @@ setTimeout(() => {
 
     const loadMainXmlOrig = loadMainXml
 
-
     loadMainXml = (arg) => {
         loadMainXmlOrig(arg);
         setTimeout(postLoadMainXml, 0);
     }
 
-}, 1000);
+});
 })();
