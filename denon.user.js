@@ -1,12 +1,11 @@
 // ==UserScript==
 // @name         Denon
 // @namespace    https://barsk.dev/
-// @version      0.6
+// @version      0.7
 // @description  Improvements to Denon AVR-X1300W web GUI
 // @author       Ahtenus
 // @match        http://10.0.0.100/MainZone/index.html
 // @grant        none
-// @run-at      document-idle
 // ==/UserScript==
 
 (() => {
@@ -62,39 +61,41 @@ div {
 
 
 // Volume slider
-
-const volumeSlider = `
+setTimeout(() => {
+    const volumeSlider = `
 <div id="VolumeSlider">
-    <input type="range" id="VolumeSliderInp" style="width: 100%" name="Volume" min="0" step="0.5" max="80" >
+<input type="range" id="VolumeSliderInp" style="width: 100%" name="Volume" min="0" step="0.5" max="80" >
 </div>
 `
 
-$(volumeSlider).insertAfter("#VolumeLabel")
+    $(volumeSlider).insertAfter("#VolumeLabel")
 
-const sliderVolume = () => parseFloat($("#VolumeSliderInp").val());
+    const sliderVolume = () => parseFloat($("#VolumeSliderInp").val());
 
-let lastSliderChange = 0;
-$("#VolumeSliderInp").bind('input', (v) => {
-    lastSliderChange = Date.now();
-    fetch("/MainZone/index.put.asp", {
-        "method": "POST",
-        "body": `cmd0=PutMasterVolumeSet%2F${sliderVolume()-80}`,
-    })
-    .then(() => loadMainXml());
-});
+    let lastSliderChange = 0;
+    $("#VolumeSliderInp").bind('input', (v) => {
+        lastSliderChange = Date.now();
+        fetch("/MainZone/index.put.asp", {
+            "method": "POST",
+            "body": `cmd0=PutMasterVolumeSet%2F${sliderVolume()-80}`,
+        })
+            .then(() => loadMainXml());
+    });
 
-let postLoadMainXml = () => {
-    const volume = parseFloat($(".RParamVolume").text());
-    if(volume != sliderVolume() && Date.now() - lastSliderChange > 1000) {
-        $("#VolumeSliderInp").val(volume);
+    let postLoadMainXml = () => {
+        const volume = parseFloat($(".RParamVolume").text());
+        if(volume != sliderVolume() && Date.now() - lastSliderChange > 1000) {
+            $("#VolumeSliderInp").val(volume);
+        }
     }
-}
 
-const loadMainXmlOrig = loadMainXml
+    const loadMainXmlOrig = loadMainXml
 
-loadMainXml = (arg) => {
-    loadMainXmlOrig(arg);
-    setTimeout(postLoadMainXml, 0);
-}
 
+    loadMainXml = (arg) => {
+        loadMainXmlOrig(arg);
+        setTimeout(postLoadMainXml, 0);
+    }
+
+}, 1000);
 })();
