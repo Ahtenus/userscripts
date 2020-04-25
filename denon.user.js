@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Denon Remote Volume Slider
 // @namespace    https://github.com/Ahtenus/userscripts
-// @version      0.13
+// @version      1.20200425.143009
 // @description  Improvements to Denon AVR-X1300W web GUI
 // @author       Ahtenus
 // @match        http://10.0.0.100/MainZone/index.html
@@ -21,6 +21,7 @@
         }
     }
 
+    console.log("a")
     const whenTrue = (predicate) => new Promise((resolve, reject) => {
         const checkPredicate = () => {
             if(predicate()) {
