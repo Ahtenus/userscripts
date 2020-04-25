@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Denon
 // @namespace    https://barsk.dev/
-// @version      0.10
+// @version      0.11
 // @description  Improvements to Denon AVR-X1300W web GUI
 // @author       Ahtenus
 // @match        http://10.0.0.100/MainZone/index.html
@@ -91,6 +91,7 @@ whenTrue(() => typeof loadMainXml !== 'undefined')
     $(volumeSlider).insertAfter("#Volume")
 
     const sliderVolume = () => parseFloat($("#VolumeSliderInp").val());
+    const currentVolume = () => parseFloat($(".RParamVolume").text());
 
     let lastSliderChange = 0;
     $("#VolumeSliderInp").bind('input', (v) => {
@@ -99,11 +100,11 @@ whenTrue(() => typeof loadMainXml !== 'undefined')
             "method": "POST",
             "body": `cmd0=PutMasterVolumeSet%2F${sliderVolume()-80}`,
         })
-            .then(() => loadMainXml());
+            .then(() => loadMainXmlOrig());
     });
 
-    let postLoadMainXml = () => {
-        const volume = parseFloat($(".RParamVolume").text());
+    const postLoadMainXml = () => {
+        const volume = currentVolume()
         if(volume != sliderVolume() && Date.now() - lastSliderChange > 1000) {
             $("#VolumeSliderInp").val(volume);
         }
