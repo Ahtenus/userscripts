@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Denon
 // @namespace    https://barsk.dev/
-// @version      0.2
+// @version      0.3
 // @description  Improvements to Denon AVR-X1300W web GUI
 // @author       Ahtenus
 // @match        http://10.0.0.100/MainZone/index.html
@@ -21,16 +21,18 @@
     addGlobalStyle(
 `
 #Volume, #Surround, #QuickSelect, #S3 {
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 #Volume > div, #Surround > div, #QuickSelect > div {
-   width: unset;
+    width: unset;
 }
 
 div.btn31, div.btn32, div.btn33, div.btn34, div.btn35, div.btn36, div.btn37, div.btn38, div.btn39, div.btn310, div.btn311, div.btn312, div.btn313, div.btn314, div.btn315 {
-   width: unset;
+    width: unset;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 #contents {
@@ -51,7 +53,7 @@ div.btnHome, div.RParamSource, div.btnPlayerView {
     float: unset;
 }
 
-* {
+div {
     user-select: none;
 }
 `);
