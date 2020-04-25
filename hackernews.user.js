@@ -1,13 +1,11 @@
 // ==UserScript==
 // @name         Hacker News
-// @namespace    https://barsk.dev/
-// @version      0.1
+// @namespace    https://github.com/Ahtenus/userscripts
+// @version      0.2
 // @description  try to take over the world!
 // @author       You
 // @match        https://news.ycombinator.com/item*
 // @grant        none
-// @updateURL    https://raw.githubusercontent.com/Ahtenus/userscripts/master/hackernews.user.js
-// @downloadURL  https://raw.githubusercontent.com/Ahtenus/userscripts/master/hackernews.user.js
 // ==/UserScript==
 
 (function() {
