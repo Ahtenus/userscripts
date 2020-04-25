@@ -2,10 +2,9 @@
 // @name         Hacker News
 // @namespace    https://github.com/Ahtenus/userscripts
 // @version      0.2
-// @description  try to take over the world!
-// @author       You
+// @description  Bigger collapse button 
+// @author       Ahtenus
 // @match        https://news.ycombinator.com/item*
-// @grant        none
 // ==/UserScript==
 
 (function() {
