@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hacker News
 // @namespace    https://github.com/Ahtenus/userscripts
-// @version      0.2
+// @version      1.20200425.144732
 // @description  Bigger collapse button 
 // @author       Ahtenus
 // @match        https://news.ycombinator.com/item*
