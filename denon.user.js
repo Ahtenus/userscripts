@@ -55,6 +55,7 @@ div.btnHome, div.RParamSource, div.btnPlayerView {
 
 div {
     user-select: none;
+    -moz-user-select: none;
 }
 `);
 })();
