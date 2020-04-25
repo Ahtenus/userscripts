@@ -1,13 +1,11 @@
 // ==UserScript==
 // @name         Denon
 // @namespace    https://barsk.dev/
-// @version      0.1
+// @version      0.2
 // @description  Improvements to Denon AVR-X1300W web GUI
 // @author       Ahtenus
 // @match        http://10.0.0.100/MainZone/index.html
 // @grant        none
-// @updateURL    https://raw.githubusercontent.com/Ahtenus/userscripts/master/denon.user.js
-// @downloadURL  https://raw.githubusercontent.com/Ahtenus/userscripts/master/denon.user.js
 // ==/UserScript==
 
 (() => {
